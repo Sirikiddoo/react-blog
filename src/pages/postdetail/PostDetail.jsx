@@ -8,14 +8,14 @@ function PostDetail() {
     const { id } = useParams();
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [singlePost, setSinglePost] = useState(null); // Gebruik een andere naam voor de state
+    const [singlePost, setSinglePost] = useState(null);
 
     const fetchPost = async () => {
         try {
             setLoading(true);
-            const url = `http://localhost:3000/posts/${id}`; // Gebruik de juiste URL met de id
+            const url = `http://localhost:3000/posts/${id}`;
             const response = await axios.get(url);
-            setSinglePost(response.data); // Gebruik setSinglePost om de individuele post in te stellen
+            setSinglePost(response.data);
             console.log(response.data);
         } catch (error) {
             setError("Er is een fout opgetreden bij het ophalen van de post.");
@@ -25,10 +25,10 @@ function PostDetail() {
     };
 
     useEffect(() => {
-        fetchPost(); // Haal de post op wanneer de component gemount is
+        fetchPost();
     }, []);
 
-    // Controleer of singlePost bestaat voordat je het gebruikt om fouten te voorkomen
+
     if (!singlePost) {
         return <p>Loading...</p>;
     }
